@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>n7eb nedh7ak 😂</title>
+
+    <!-- Google Font fun -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            background: #ff6f61;
+            color: white;
+            box-shadow: 0 8px 0 #d84336;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        button:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #d84336;
+        }
+
+        #blague {
+            margin-top: 40px;
+            font-size: 24px;
+            max-width: 700px;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .show {
+            animation: pop 0.6s ease forwards;
+        }
+
+        @keyframes pop {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-5deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(3deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Enzel ken t7eb 3le nokta 😂</h1>
+
+    <button onclick="afficherBlague()">🤣enzel fissa3 </button>
+
+    <div id="blague"></div>
+
+    <script>
+    const blagues = [
+        "9allek famma wehed mett 💀 w howa ykawerr ⚽️ yekhi tala3 روح رياضية.",
+        "Famma mgharfa 🥄 mnarvza khtr mehich fi s7anha 🍽️",
+        "Famma wehd madfoun noss b noss khtr ysawrou fi clip: أنا عايش و مش عايش 😂",
+        "Famma zouz mchew l mat7af (متحف)، we7ed cheff 9barr maktoub aalih 129 av J.C، 9al l sahbou: chmaaneha؟ 9allou: ya bhim heki série el karhba li dharbetou ⚡",
+        "Famma wehd mahboul bel PC ki ya7dher l3chée omou t9ollou ALT TAB 😂",
+        "Famma bagra ta7ett fi bir tala3 kifesh kharjet → mabloula 🐄💦",
+        "Famma wehd chreb zit yekhi mett, tala3 3le → 9albou zlo9 😭",
+        "Mra tounsiya fi France 9alet l omha el ghorba morra, 9atlha 3lech? 9alha khater ne9ssa sokker 🍬",
+        "Famma wehd mche l superette 9alhom 3andkom sokker? 9aloulou ey, 9alhom nchallah lebess 😂",
+        "Famma ka3ba wa9fa 9odem el jema3 🕌 3lech? → testanna fel 3assr "
+    ];
+
+    function afficherBlague() {
+        const random = Math.floor(Math.random() * blagues.length);
+        const blagueDiv = document.getElementById("blague");
+
+        blagueDiv.classList.remove("show");
+        void blagueDiv.offsetWidth;
+
+        blagueDiv.textContent = blagues[random];
+        blagueDiv.classList.add("show");
+    }
+</script>
+
+
+</body>
+</html>
