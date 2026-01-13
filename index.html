@@ -1,93 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>n7eb nedh7ak 😂</title>
-
-    <!-- Google Font fun -->
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Comic Neue', cursive;
-            text-align: center;
-            margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ffecd2, #fcb69f);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 42px;
-            margin-bottom: 30px;
-            animation: bounce 2s infinite;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 20px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            background: #ff6f61;
-            color: white;
-            box-shadow: 0 8px 0 #d84336;
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        button:active {
-            transform: translateY(6px);
-            box-shadow: 0 2px 0 #d84336;
-        }
-
-        #blague {
-            margin-top: 40px;
-            font-size: 24px;
-            max-width: 700px;
-            padding: 20px 30px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            opacity: 0;
-            transform: scale(0.5);
-        }
-
-        .show {
-            animation: pop 0.6s ease forwards;
-        }
-
-        @keyframes pop {
-            0% {
-                opacity: 0;
-                transform: scale(0.5) rotate(-5deg);
-            }
-            60% {
-                transform: scale(1.1) rotate(3deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>n7eb nedh7ak 😂</title>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Comic Neue', cursive;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+}
+h1 { font-size: 42px; margin-bottom: 30px; animation: bounce 2s infinite; }
+input { font-size: 20px; padding: 10px; border-radius: 10px; border: 2px solid #ff6f61; margin-bottom: 20px; }
+button {
+    padding: 15px 30px; font-size: 20px; border: none; border-radius: 30px;
+    cursor: pointer; background: #ff6f61; color: white; box-shadow: 0 8px 0 #d84336;
+    transition: transform 0.1s, box-shadow 0.1s; margin: 5px;
+}
+button:active { transform: translateY(6px); box-shadow: 0 2px 0 #d84336; }
+#blague { margin-top: 20px; font-size: 24px; max-width: 700px; padding: 20px 30px;
+    background: white; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    opacity: 0; transform: scale(0.5); }
+#score { font-size: 22px; margin-top: 10px; }
+#classementListe { margin-top: 20px; font-size: 20px; max-width: 500px; text-align: left; }
+.show { animation: pop 0.6s ease forwards; }
+@keyframes pop { 0% {opacity:0; transform:scale(0.5) rotate(-5deg);} 60%{transform:scale(1.1) rotate(3deg);} 100%{opacity:1; transform:scale(1) rotate(0);} }
+@keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+.hidden { display: none; }
+.joueurCard {
+    background: #fff8dc;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.joueurCard:hover { transform: scale(1.05); }
+.etoile { font-size: 24px; margin-right: 8px; }
+.gold { color: gold; }
+.silver { color: silver; }
+.bronze { color: #cd7f32; }
+</style>
 </head>
 <body>
 
-    <h1>Enzel ken t7eb 3le nokta 😂</h1>
+<!-- Interface prénom -->
+<div id="interfacePrenom">
+    <h1>ehéééééé mr7be bik lik wa7cha ! 😄</h1>
+    <input type="text" id="prenomInput" placeholder="ekteb esmk">
+    <br>
+    <button onclick="entrer()">kenek geleg odkhl fissa3 😂</button>
+</div>
 
-    <button onclick="afficherBlague()">🤣enzel fissa3 </button>
-
+<!-- Zone Blagues -->
+<div id="jeu" class="hidden">
+    <h1 id="mar7be"></h1>
+    <button onclick="afficherBlague()">🤣 Enzel fissa3</button>
+    <button onclick="blaguePrecedente()">⬅️ li 9balha</button>
+    <button onclick="resetJeu()">🔄 3awed</button>
+    <button onclick="allerClassement()">📊 Voir classement</button>
     <div id="blague"></div>
+    <div id="score"></div>
+</div>
 
-    <script>
+<!-- Interface Classement -->
+<div id="interfaceClassement" class="hidden">
+    <h1>🏅 Classement des joueurs</h1>
+    <div id="classementListe"></div>
+    <button onclick="retourBlagues()">↩️ Retour aux blagues</button>
+</div>
+
+<audio id="rire" src="https://www.myinstants.com/media/sounds/cartoon-laugh.mp3"></audio>
+
+<script>
 const blagues = [
     "9allek famma wehed mett 💀 w howa ykawerr ⚽️ yekhi tala3 روح رياضية.",
     "Famma mgharfa 🥄 mnarvza khtr mehich fi s7anha 🍽️",
@@ -102,43 +93,112 @@ const blagues = [
     "Famma wehed mche l CUBA yekhi w7el ghadi",
     "Famma profett physique 9alet l classa li heya bch t3achihom lila yeki waklethom kaskrout bel molécule",
     "Famma mgharfa ta7ett tdharbtt f tawla yekhi 3arrsou",
-    "Famma najjar 7ab ydallel martou 9allha ye lou7i",
+    "Famma najgar 7ab ydallel martou 9allha ye lou7i",
     "Famma wehed kle tri7a yekhi walla 0,1 mch wehd",
     "Famma kenoun tkasserr yekhi slata bket khtr tchwett aalih",
     "famma wehed assla3 mche yokhteb mra, 9al l bouha bentek fou9 rassi yekhi zol9ett",
     "Whed r9ad makherr yekhi l9a el 7elma bdet"
 ];
 
-// copie du tableau
 let blaguesRestantes = [...blagues];
+let historique = [];
+let indexHistorique = -1;
+let score = 0;
+let prenom = localStorage.getItem("prenom") || "";
+let classement = JSON.parse(localStorage.getItem("classement")) || {};
+
+function entrer() {
+    const input = document.getElementById("prenomInput").value.trim();
+    if(input === "" && prenom === "") { alert("Écris ton prénom !"); return; }
+    if(input !== "") { prenom = input; localStorage.setItem("prenom", prenom); }
+    document.getElementById("interfacePrenom").classList.add("hidden");
+    document.getElementById("jeu").classList.remove("hidden");
+    document.getElementById("mar7be").textContent = `Mar7bé bik ${prenom} 😄`;
+    score = classement[prenom]?.score || 0;
+    afficherScore();
+}
+
+function afficher(blague) {
+    const div = document.getElementById("blague");
+    const son = document.getElementById("rire");
+    div.classList.remove("show");
+    void div.offsetWidth;
+    div.textContent = blague;
+    div.classList.add("show");
+    son.currentTime = 0;
+    son.play();
+}
 
 function afficherBlague() {
-
-    // si toutes les blagues ont été affichées
-    if (blaguesRestantes.length === 0) {
-        blaguesRestantes = [...blagues];
-    }
-
+    if(indexHistorique < historique.length - 1) indexHistorique = historique.length -1;
+    if(blaguesRestantes.length === 0) blaguesRestantes = [...blagues];
     const random = Math.floor(Math.random() * blaguesRestantes.length);
     const blague = blaguesRestantes[random];
-
-    // supprimer la blague affichée
-    blaguesRestantes.splice(random, 1);
-
-    const blagueDiv = document.getElementById("blague");
-
-    blagueDiv.classList.remove("show");
-    void blagueDiv.offsetWidth;
-
-    blagueDiv.textContent = blague;
-    blagueDiv.classList.add("show");
+    blaguesRestantes.splice(random,1);
+    historique.push(blague);
+    indexHistorique++;
+    score += 2; // chaque blague vaut 2 points
+    afficherScore();
+    updateClassement();
+    afficher(blague);
 }
+
+function blaguePrecedente() {
+    if(indexHistorique > 0) { indexHistorique--; afficher(historique[indexHistorique]); }
+}
+
+function resetJeu() {
+    blaguesRestantes = [...blagues];
+    historique = [];
+    indexHistorique = -1;
+    score = 0;
+    updateClassement();
+    afficherScore();
+    document.getElementById("blague").textContent = "Le jeu a été reset 😎";
+}
+
+function afficherScore() {
+    const div = document.getElementById("score");
+    div.innerHTML = `Score: ${score}`;
+}
+
+function updateClassement() {
+    classement[prenom] = {score: score};
+    localStorage.setItem("classement", JSON.stringify(classement));
+}
+
+function afficherClassementListe() {
+    const div = document.getElementById("classementListe");
+    const sorted = Object.entries(classement).sort((a,b)=>b[1].score - a[1].score);
+    let html = "";
+    sorted.forEach(([nom,obj],i)=>{
+        let star = "";
+        if(i===0) star = `<span class="etoile gold">👑</span>`;
+        else if(i===1) star = `<span class="etoile silver">🥈</span>`;
+        else if(i===2) star = `<span class="etoile bronze">🥉</span>`;
+        html += `<div class="joueurCard">${star}<b>${nom}</b> - ${obj.score} pts</div>`;
+    });
+    div.innerHTML = html;
+}
+
+function allerClassement() {
+    document.getElementById("jeu").classList.add("hidden");
+    document.getElementById("interfaceClassement").classList.remove("hidden");
+    afficherClassementListe();
+}
+
+function retourBlagues() {
+    document.getElementById("interfaceClassement").classList.add("hidden");
+    document.getElementById("jeu").classList.remove("hidden");
+    document.getElementById("blague").textContent = historique[indexHistorique] || "";
+}
+
+if(prenom !== "") entrer();
 </script>
-
-
-
 </body>
 </html>
+
+
 
 
 
