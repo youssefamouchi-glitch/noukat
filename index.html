@@ -86,6 +86,13 @@ button:active {
     <button id="btnClassement">🏆 Classement</button>
     <div id="blague"></div>
     <h2 id="score"></h2>
+
+    <!-- AJOUT : Formulaire proposer une blague -->
+    <hr>
+    <h3>💡 Propose ta blague</h3>
+    <input id="inputBlague" placeholder="Ekteb blagtik houni" style="width: 80%; padding: 10px; border-radius: 10px;">
+    <button id="btnProposer">Envoyer</button>
+    <div id="msgBlague" style="margin-top: 10px; color: green;"></div>
 </div>
 
 <!-- CLASSEMENT -->
@@ -99,7 +106,7 @@ button:active {
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDocs, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
 /* 🔥 FIREBASE CONFIG */
 const firebaseConfig = {
@@ -148,6 +155,26 @@ const btnBlague = document.getElementById("btnBlague");
 const btnPrev = document.getElementById("btnPrev");
 const btnClassement = document.getElementById("btnClassement");
 const btnRetour = document.getElementById("btnRetour");
+
+/* 🔹 AJOUT : proposer une blague */
+const btnProposer = document.getElementById("btnProposer");
+const inputBlague = document.getElementById("inputBlague");
+const msgBlague = document.getElementById("msgBlague");
+
+btnProposer.addEventListener("click", async () => {
+    const texte = inputBlague.value.trim();
+    if(!texte) return alert("Ekteb nokta men aandek!");
+
+    // Ajouter dans Firebase dans une collection "blaguesProposees"
+    await addDoc(collection(db, "blaguesProposees"), {
+        blague: texte,
+        auteur: prenom,
+        date: new Date()
+    });
+
+    msgBlague.textContent = "✅ mrigl! lemsata mte3k bch ychoufouha ness lkol.";
+    inputBlague.value = "";
+});
 
 /* 🔹 FONCTIONS */
 function updateScore() {
@@ -233,6 +260,8 @@ if (prenom) {
 
 </body>
 </html>
+
+
 
 
 
