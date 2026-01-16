@@ -16,7 +16,10 @@ body {
     justify-content: center;
     align-items: center;
 }
-.hidden { display: none; }
+
+.hidden {
+    display: none;
+}
 
 .box {
     background: white;
@@ -39,6 +42,7 @@ button {
     margin: 5px;
     box-shadow: 0 6px 0 #d84336;
 }
+
 button:active {
     transform: translateY(4px);
     box-shadow: 0 2px 0 #d84336;
@@ -68,7 +72,8 @@ button:active {
 <!-- LOGIN -->
 <div id="login" class="box">
     <h1>😄 Mar7bé bik !</h1>
-    <input id="prenomInput" placeholder="Ekteb esmek" style="font-size:20px;padding:10px;border-radius:10px;">
+    <input id="prenomInput" placeholder="Ekteb esmek"
+           style="font-size:20px;padding:10px;border-radius:10px;">
     <br><br>
     <button id="btnEntrer">Entrer</button>
 </div>
@@ -76,8 +81,8 @@ button:active {
 <!-- JEU -->
 <div id="jeu" class="box hidden">
     <h1 id="welcome"></h1>
-    <button id="btnBlague">🤣 enzel</button>
-    <button id="btnPrev">⬅️ li 9balha</button>
+    <button id="btnBlague">🤣 Enzel</button>
+    <button id="btnPrev">⬅️ Elli 9balha</button>
     <button id="btnClassement">🏆 Classement</button>
     <div id="blague"></div>
     <h2 id="score"></h2>
@@ -87,7 +92,7 @@ button:active {
 <div id="classement" class="box hidden">
     <h1>🏆 Classement global</h1>
     <div id="classementListe"></div>
-    <button id="btnRetour">⬅️ kammal edh7ak</button>
+    <button id="btnRetour">⬅️ Kammel edh7ak</button>
 </div>
 
 <audio id="rire" src="https://www.myinstants.com/media/sounds/cartoon-laugh.mp3"></audio>
@@ -96,123 +101,17 @@ button:active {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getFirestore, doc, setDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
+/* 🔥 FIREBASE CONFIG */
 const firebaseConfig = {
   apiKey: "AIzaSyDvINeblNfGiH88_1iXQ14ZabFI4ICLlcs",
   authDomain: "noukat-eb290.firebaseapp.com",
-  projectId: "noukat-eb290",
+  projectId: "noukat-eb290"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const blagues = [
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Noukat 😂</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
-
-<style>
-body {
-    font-family: 'Comic Neue', cursive;
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #ffecd2, #fcb69f);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.hidden { display: none; }
-
-.box {
-    background: white;
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: 0 15px 30px rgba(0,0,0,.2);
-    text-align: center;
-    max-width: 700px;
-    width: 90%;
-}
-
-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    background: #ff6f61;
-    color: white;
-    cursor: pointer;
-    margin: 5px;
-    box-shadow: 0 6px 0 #d84336;
-}
-button:active {
-    transform: translateY(4px);
-    box-shadow: 0 2px 0 #d84336;
-}
-
-#blague {
-    margin-top: 20px;
-    font-size: 24px;
-    background: #fff3e0;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-#classementListe {
-    text-align: left;
-    font-size: 20px;
-}
-
-.top1 { color: gold; font-size: 26px; }
-.top2 { color: silver; font-size: 23px; }
-.top3 { color: #cd7f32; font-size: 21px; }
-</style>
-</head>
-
-<body>
-
-<!-- LOGIN -->
-<div id="login" class="box">
-    <h1>😄 Mar7bé bik !</h1>
-    <input id="prenomInput" placeholder="Ekteb esmek" style="font-size:20px;padding:10px;border-radius:10px;">
-    <br><br>
-    <button id="btnEntrer">Entrer</button>
-</div>
-
-<!-- JEU -->
-<div id="jeu" class="box hidden">
-    <h1 id="welcome"></h1>
-    <button id="btnBlague">🤣 enzel</button>
-    <button id="btnPrev">⬅️ li 9balha</button>
-    <button id="btnClassement">🏆 Classement</button>
-    <div id="blague"></div>
-    <h2 id="score"></h2>
-</div>
-
-<!-- CLASSEMENT -->
-<div id="classement" class="box hidden">
-    <h1>🏆 Classement global</h1>
-    <div id="classementListe"></div>
-    <button id="btnRetour">⬅️ kammal edh7ak</button>
-</div>
-
-<audio id="rire" src="https://www.myinstants.com/media/sounds/cartoon-laugh.mp3"></audio>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDvINeblNfGiH88_1iXQ14ZabFI4ICLlcs",
-  authDomain: "noukat-eb290.firebaseapp.com",
-  projectId: "noukat-eb290",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
+/* 😂 BLAGUES */
 const blagues = [
 "9allek famma wehed mett 💀 w howa ykawerr ⚽️ yekhi tala3 روح رياضية.", 
 "Famma mgharfa 🥄 mnarvza khtr mehich fi s7anha 🍽️",
@@ -239,31 +138,54 @@ let index = -1;
 let score = 0;
 let prenom = localStorage.getItem("prenom") || "";
 
+/* 🔹 ELEMENTS */
+const login = document.getElementById("login");
+const jeu = document.getElementById("jeu");
+const classement = document.getElementById("classement");
+
+const btnEntrer = document.getElementById("btnEntrer");
+const btnBlague = document.getElementById("btnBlague");
+const btnPrev = document.getElementById("btnPrev");
+const btnClassement = document.getElementById("btnClassement");
+const btnRetour = document.getElementById("btnRetour");
+
+/* 🔹 FONCTIONS */
 function updateScore() {
-    document.getElementById("score").textContent = `Score : ${score}`;
+    document.getElementById("score").textContent = "Score : " + score;
 }
 
 async function entrer() {
     prenom = prenom || document.getElementById("prenomInput").value.trim();
-    if (!prenom) return alert("Ekteb esmek");
+    if (!prenom) {
+        alert("Ekteb esmek");
+        return;
+    }
+
     localStorage.setItem("prenom", prenom);
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("jeu").classList.remove("hidden");
-    document.getElementById("welcome").textContent = `😄 ${prenom}`;
+    login.classList.add("hidden");
+    jeu.classList.remove("hidden");
+    document.getElementById("welcome").textContent = "😄 " + prenom;
     updateScore();
 }
 
 async function nouvelleBlague() {
     if (restantes.length === 0) restantes = [...blagues];
+
     const i = Math.floor(Math.random() * restantes.length);
-    const b = restantes.splice(i,1)[0];
+    const b = restantes.splice(i, 1)[0];
+
     historique.push(b);
     index++;
     score += 2;
+
     document.getElementById("blague").textContent = b;
     document.getElementById("rire").play();
     updateScore();
-    await setDoc(doc(db,"noukat",prenom), { prenom, score });
+
+    await setDoc(doc(db, "noukat", prenom), {
+        prenom: prenom,
+        score: score
+    });
 }
 
 function precedente() {
@@ -274,103 +196,45 @@ function precedente() {
 }
 
 async function voirClassement() {
-    document.getElementById("jeu").classList.add("hidden");
-    document.getElementById("classement").classList.remove("hidden");
-    const snap = await getDocs(collection(db,"noukat"));
+    jeu.classList.add("hidden");
+    classement.classList.remove("hidden");
+
+    const snap = await getDocs(collection(db, "noukat"));
     let data = [];
     snap.forEach(d => data.push(d.data()));
-    data.sort((a,b)=>b.score-a.score);
-    document.getElementById("classementListe").innerHTML =
-        data.map((j,i)=>`${i+1}. ${j.prenom} — ${j.score} pts`).join("<br>");
+    data.sort((a, b) => b.score - a.score);
+
+    let html = "";
+    data.forEach((j, i) => {
+        const c = i === 0 ? "top1" : i === 1 ? "top2" : i === 2 ? "top3" : "";
+        html += `<div class="${c}">${i + 1}. ${j.prenom} — ${j.score} pts</div>`;
+    });
+
+    document.getElementById("classementListe").innerHTML = html;
 }
 
 function retourJeu() {
-    document.getElementById("classement").classList.add("hidden");
-    document.getElementById("jeu").classList.remove("hidden");
+    classement.classList.add("hidden");
+    jeu.classList.remove("hidden");
 }
 
-/* 🔗 BOUTONS */
-document.getElementById("btnEntrer").addEventListener("click", entrer);
-document.getElementById("btnBlague").addEventListener("click", nouvelleBlague);
-document.getElementById("btnPrev").addEventListener("click", precedente);
-document.getElementById("btnClassement").addEventListener("click", voirClassement);
-document.getElementById("btnRetour").addEventListener("click", retourJeu);
+/* 🔹 EVENTS */
+btnEntrer.addEventListener("click", entrer);
+btnBlague.addEventListener("click", nouvelleBlague);
+btnPrev.addEventListener("click", precedente);
+btnClassement.addEventListener("click", voirClassement);
+btnRetour.addEventListener("click", retourJeu);
 
-if (prenom) entrer();
+/* 🔹 AUTO LOGIN */
+if (prenom) {
+    entrer();
+}
 </script>
 
 </body>
 </html>
-];
 
-let restantes = [...blagues];
-let historique = [];
-let index = -1;
-let score = 0;
-let prenom = localStorage.getItem("prenom") || "";
 
-function updateScore() {
-    document.getElementById("score").textContent = `Score : ${score}`;
-}
-
-async function entrer() {
-    prenom = prenom || document.getElementById("prenomInput").value.trim();
-    if (!prenom) return alert("Ekteb esmek");
-    localStorage.setItem("prenom", prenom);
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("jeu").classList.remove("hidden");
-    document.getElementById("welcome").textContent = `😄 ${prenom}`;
-    updateScore();
-}
-
-async function nouvelleBlague() {
-    if (restantes.length === 0) restantes = [...blagues];
-    const i = Math.floor(Math.random() * restantes.length);
-    const b = restantes.splice(i,1)[0];
-    historique.push(b);
-    index++;
-    score += 2;
-    document.getElementById("blague").textContent = b;
-    document.getElementById("rire").play();
-    updateScore();
-    await setDoc(doc(db,"noukat",prenom), { prenom, score });
-}
-
-function precedente() {
-    if (index > 0) {
-        index--;
-        document.getElementById("blague").textContent = historique[index];
-    }
-}
-
-async function voirClassement() {
-    document.getElementById("jeu").classList.add("hidden");
-    document.getElementById("classement").classList.remove("hidden");
-    const snap = await getDocs(collection(db,"noukat"));
-    let data = [];
-    snap.forEach(d => data.push(d.data()));
-    data.sort((a,b)=>b.score-a.score);
-    document.getElementById("classementListe").innerHTML =
-        data.map((j,i)=>`${i+1}. ${j.prenom} — ${j.score} pts`).join("<br>");
-}
-
-function retourJeu() {
-    document.getElementById("classement").classList.add("hidden");
-    document.getElementById("jeu").classList.remove("hidden");
-}
-
-/* 🔗 BOUTONS */
-document.getElementById("btnEntrer").addEventListener("click", entrer);
-document.getElementById("btnBlague").addEventListener("click", nouvelleBlague);
-document.getElementById("btnPrev").addEventListener("click", precedente);
-document.getElementById("btnClassement").addEventListener("click", voirClassement);
-document.getElementById("btnRetour").addEventListener("click", retourJeu);
-
-if (prenom) entrer();
-</script>
-
-</body>
-</html>
 
 
 
